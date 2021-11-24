@@ -10,25 +10,28 @@ const surveyItems = [
 
 export default function Survey() {
     const [groupNum, setGroupNum] = React.useState(1)
-    const [isLast, setIsLst] = React.useState(false)
+    const [isLast, setIsLast] = React.useState(false)
     const [finished, setFinished] = React.useState(false)
     const [ansers, setAnsers] = React.useState([])
 
     const navigate = useNavigate();
 
     React.useEffect(()=>{
-        if (finished)
+        if (finished)  {
+            // calc score
             navigate('/score/100')
+        }
     },[finished])
 
     const handleNextClick = (e) => {
         e.preventDefault()
-        console.log(ansers)
-        // calc score
+        
+        console.log(ansers)        
+        
         setGroupNum(prevGroupNum=>{
             let newGroupNum = prevGroupNum+1
             if (surveyItems.length === newGroupNum)
-                setIsLst(true)
+                setIsLast(true)
             if (isLast) {
                 setFinished(true)
                 newGroupNum = prevGroupNum
